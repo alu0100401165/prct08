@@ -74,11 +74,11 @@ describe Matriz do
     end 
     
       it "Sumar matrices 2" do
-	 ((@m7 + @m8) == @m9).should be_true
+	 (@m7 + @m8).should == @m9
       end 
     
     it "Multiplicar matrices 2" do
-         ((@m7 * @m8) == @m10).should be_true
+         (@m7 * @m8).should == @m10
     end 
   end
   
