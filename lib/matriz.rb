@@ -111,7 +111,7 @@ class Matriz
         result[i] = Array.new
         for j in 0...mat.mCol do
 	  if(@matriz[i][j].class==Fraccion)
-           result[i][j] = Fraccion.new(1,1)
+           result[i][j] = Fraccion.new(0,1)
 	  else
 	    result[i][j] = 0
 	  end
@@ -133,6 +133,7 @@ class Matriz
     aux
   end
   
+  # Metodo para comparar la igualdad de dos matrices
   def ==(mat)
     if ((@mCol == mat.mCol)&&(@nFil == mat.nFil))
       for i in 0...@nFil do
@@ -142,7 +143,7 @@ class Matriz
 	  end
 	end
       end
-    #end
+   
     else
      return false
     end
@@ -151,14 +152,4 @@ class Matriz
    
 end
 
- m1 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(1,2)],[Fraccion.new(1,2),Fraccion.new(1,2)]])
- m2 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(1,2)],[Fraccion.new(1,2),Fraccion.new(1,2)]])
  
- if(m1==m2)
-   puts "Es verdadero"
- else
-   puts "Es Falso"
- end
-
-
-
