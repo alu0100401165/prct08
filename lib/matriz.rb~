@@ -1,5 +1,7 @@
 #! /usr/local/ruby/bin/ruby 
 
+require './lib/frac_main.rb'
+
 class Matriz
 
   attr_accessor :nFil , :mCol, :matriz
@@ -108,7 +110,11 @@ class Matriz
       for i in 0...@nFil do
         result[i] = Array.new
         for j in 0...mat.mCol do
-          result[i][j] = 0
+	  if(@matriz[i][j].class==Fraccion)
+           result[i][j] = Fraccion.new(1,1)
+	  else
+	    result[i][j] = 0
+	  end
         end
       end
 
@@ -126,4 +132,33 @@ class Matriz
     end
     aux
   end
+  
+  def ==(mat)
+    if ((@mCol == mat.mCol)&&(@nFil == mat.nFil))
+      for i in 0...@nFil do
+	for j in 0...@mCol do
+	  if ((@matriz[i][j] == mat.matriz[i][j])==false)
+	    return false
+	  end
+	end
+      end
+    #end
+    else
+     return false
+    end
+   return true 
+  end
+   
 end
+
+ m1 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(1,2)],[Fraccion.new(1,2),Fraccion.new(1,2)]])
+ m2 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(1,2)],[Fraccion.new(1,2),Fraccion.new(1,2)]])
+ 
+ if(m1==m2)
+   puts "Es verdadero"
+ else
+   puts "Es Falso"
+ end
+
+
+

@@ -1,4 +1,5 @@
-require 'lib/matriz.rb'
+require './lib/matriz.rb'
+require './lib/frac_main.rb'
 require 'rspec'
 
 describe Matriz do
@@ -8,6 +9,16 @@ describe Matriz do
     @m2 = Matriz.new([[2,1],[0,1]])
     @m3 = Matriz.new([[2,0,1],[3,0,0],[5,1,1]])
     @m4 = Matriz.new([[4,1,6],[2,0,1]])
+    
+    @m5 = Matriz.new([[Fraccion.new(1,2).to_f,Fraccion.new(1,3).to_f],[Fraccion.new(1,4).to_f,Fraccion.new(1,5).to_f]])
+    @m6 = Matriz.new([[Fraccion.new(1,2).to_f,Fraccion.new(2,3).to_f],[Fraccion.new(3,4).to_f,Fraccion.new(4,5).to_f]])
+    
+    @m7 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(1,3)],[Fraccion.new(1,4),Fraccion.new(1,5)]])
+    @m8 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(2,3)],[Fraccion.new(3,4),Fraccion.new(4,5)]])
+    
+    @m9 = Matriz.new([[Fraccion.new(1,1),Fraccion.new(1,1)],[Fraccion.new(1,1),Fraccion.new(1,1)]])
+    @m10 = Matriz.new([[Fraccion.new(1,2),Fraccion.new(3,5)],[Fraccion.new(11,40),Fraccion.new(49,150)]])
+    
   end
 
   describe "# Se crean las matrices del tamanio especificado e inicialidas" do
@@ -52,5 +63,25 @@ describe Matriz do
       ((@m1 - @m2).matriz.should == Matriz.new([[-1,2],[2,-1]]).matriz)
     end
   end
-
+  
+  describe "Modificación de clase" do
+    it "Sumar matrices" do
+      ((@m5 + @m6).matriz.should == Matriz.new([[Fraccion.new(1,1).to_f,Fraccion.new(1,1).to_f],[Fraccion.new(1,1).to_f,Fraccion.new(1,1).to_f]]).matriz)
+    end 
+    
+    it "Multiplicar matrices" do
+      ((@m5 * @m6).matriz.should == Matriz.new([[Fraccion.new(1,2).to_f,Fraccion.new(3,5).to_f],[Fraccion.new(11,40).to_f,Fraccion.new(49,150).to_f]]).matriz)
+    end 
+    
+      it "Sumar matrices 2" do
+	m11 = @m7 + @m8
+        m11 == @m9
+      end 
+    
+    it "Multiplicar matrices 2" do
+      m11 = @m7 * @m8
+      m11 == @m10
+    end 
+  end
+  
 end
